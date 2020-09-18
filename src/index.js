@@ -1,7 +1,6 @@
 import './style.scss';
 
-import './components/buttons/buttons.js';
+import Keyboard from './components/keyboard';
 
-const arr = [1, 2, 3, 4];
-
-console.log(arr);
+const keyboard = new Keyboard();
+document.body.append(keyboard.elem);
