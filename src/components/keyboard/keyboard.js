@@ -30,7 +30,7 @@ class Keyboard {
         this.keyboardTextarea.deleteText();
         return;
       }
-      this.keyboardTextarea.elem.value += e.target.textContent;
+      this.keyboardTextarea.addText(e.target.textContent);
     }
   }
 }

@@ -12,14 +12,18 @@ class Textarea {
   }
 
   onBlur(e) {
-    this.coursorPosition = e.target.selectionStart - 1;
+    this.coursorPosition = e.target.selectionStart;
   }
 
   deleteText() {
     const textareaText = this.elem.value.split('');
-    textareaText.splice(this.coursorPosition, 1);
+    textareaText.splice(this.coursorPosition - 1, 1);
     this.elem.value = textareaText.join('');
-    this.elem.setSelectionRange(this.coursorPosition, this.coursorPosition);
+    this.elem.setSelectionRange(this.coursorPosition - 1, this.coursorPosition - 1);
+  }
+
+  addText(text) {
+    this.elem.setRangeText(text, this.coursorPosition, this.coursorPosition, 'end');
   }
 }
 
