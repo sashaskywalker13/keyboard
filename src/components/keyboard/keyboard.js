@@ -22,6 +22,7 @@ class Keyboard {
   }
 
   render() {
+    // eslint-disable-next-line no-undef
     this.elem = document.createElement('div');
     this.elem.classList.add('keyboard');
     this.elem.insertAdjacentElement('afterbegin', this.keyboardTextarea.elem);

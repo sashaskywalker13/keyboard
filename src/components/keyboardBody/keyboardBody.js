@@ -14,6 +14,7 @@ class Body {
   }
 
   render() {
+    // eslint-disable-next-line no-undef
     this.elem = document.createElement('div');
     this.elem.classList.add('keyboard__body');
     this.renderKeys();

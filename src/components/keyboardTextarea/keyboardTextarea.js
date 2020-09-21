@@ -7,6 +7,7 @@ class Textarea {
   }
 
   render() {
+    // eslint-disable-next-line no-undef
     this.elem = document.createElement('textarea');
     this.elem.classList.add('keyboard__textarea');
   }

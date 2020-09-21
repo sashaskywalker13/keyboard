@@ -13,6 +13,7 @@ import {
 } from '../../lib/constants';
 
 const key = (button) => {
+  // eslint-disable-next-line no-undef
   const keyboardKey = document.createElement('button');
   keyboardKey.classList.add('keyboard__key');
   keyboardKey.textContent = button;
