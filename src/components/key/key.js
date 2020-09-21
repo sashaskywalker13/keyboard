@@ -1,37 +1,58 @@
 import './key.scss';
 
+import {
+  BACKSPACE,
+  SYMBOLS,
+  CAPSLOCK,
+  ENTER,
+  BACK,
+  DONE,
+  SPACE,
+  RU,
+  EN,
+} from '../../lib/constants';
+
 const key = (button) => {
   const keyboardKey = document.createElement('button');
   keyboardKey.classList.add('keyboard__key');
   keyboardKey.textContent = button;
+  keyboardKey.setAttribute('value', button);
   switch (button) {
-    case 'backspace':
+    case BACKSPACE:
       keyboardKey.classList.add('keyboard__key--wide');
-      keyboardKey.setAttribute('data-value', 'backspace');
+      keyboardKey.setAttribute('data-value', BACKSPACE);
       break;
-    case 'caps':
+    case SYMBOLS:
       keyboardKey.classList.add('keyboard__key--wide');
-      keyboardKey.setAttribute('data-value', 'caps');
+      keyboardKey.setAttribute('data-value', SYMBOLS);
       break;
-    case 'enter':
+    case CAPSLOCK:
       keyboardKey.classList.add('keyboard__key--wide');
-      keyboardKey.setAttribute('data-value', 'enter');
+      keyboardKey.setAttribute('data-value', CAPSLOCK);
       break;
-    case 'done':
-      keyboardKey.classList.add('keyboard__key--wide');
-      keyboardKey.setAttribute('data-value', 'done');
+    case ENTER:
+      keyboardKey.classList.add('keyboard__key--enter');
+      keyboardKey.setAttribute('data-value', ENTER);
       break;
-    case 'space':
+    case BACK:
       keyboardKey.classList.add('keyboard__key--wide');
-      keyboardKey.setAttribute('data-value', 'space');
+      keyboardKey.setAttribute('data-value', BACK);
       break;
-    case 'ru':
+    case DONE:
       keyboardKey.classList.add('keyboard__key--wide');
-      keyboardKey.setAttribute('data-value', 'ru');
+      keyboardKey.setAttribute('data-value', DONE);
       break;
-    case 'en':
-      keyboardKey.classList.add('keyboard__key--wide');
-      keyboardKey.setAttribute('data-value', 'en');
+    case SPACE:
+      keyboardKey.classList.add('keyboard__key--space');
+      keyboardKey.setAttribute('data-value', SPACE);
+      break;
+    case RU:
+      keyboardKey.classList.add('keyboard__key--lang');
+      keyboardKey.setAttribute('data-value', RU);
+      break;
+    case EN:
+      keyboardKey.classList.add('keyboard__key--lang');
+      keyboardKey.setAttribute('data-value', EN);
       break;
     default:
       break;

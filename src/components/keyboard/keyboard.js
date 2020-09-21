@@ -1,12 +1,24 @@
-import Textarea from '../textarea';
-import Body from '../body';
+import Textarea from '../keyboardTextarea';
+import Body from '../keyboardBody';
+
+import {
+  RU,
+  EN,
+  BACKSPACE,
+  SYMBOLS,
+  BACK,
+  CAPSLOCK,
+  ENTER,
+  SPACE,
+  DONE,
+} from '../../lib/constants';
 
 class Keyboard {
   constructor() {
     this.keyboardTextarea = new Textarea();
     this.keyboardBody = new Body();
     this.render();
-    this.elem.addEventListener('click', (e) => this.onClick(e));
+    this.addEventListeners();
   }
 
   render() {
@@ -16,22 +28,83 @@ class Keyboard {
     this.elem.insertAdjacentElement('beforeend', this.keyboardBody.elem);
   }
 
-  onClick(e) {
-    if (e.target.classList.contains('keyboard__key')) {
-      if (e.target.dataset.value === 'ru') {
-        this.keyboardBody.changeLang('ru');
+  onClick({ target }) {
+    if (target.classList.contains('keyboard__key')) {
+      if (target.value === RU) {
+        this.keyboardBody.changeLang(RU);
         return;
       }
-      if (e.target.dataset.value === 'en') {
-        this.keyboardBody.changeLang('en');
+      if (target.value === EN) {
+        this.keyboardBody.changeLang(EN);
         return;
       }
-      if (e.target.dataset.value === 'backspace') {
-        this.keyboardTextarea.deleteText();
+      if (target.value === BACKSPACE) {
+        this.keyboardTextarea.deleteLetter();
         return;
       }
-      this.keyboardTextarea.addText(e.target.textContent);
+      if (target.value === SYMBOLS) {
+        this.keyboardBody.changeLang(SYMBOLS);
+        return;
+      }
+      if (target.value === BACK) {
+        this.keyboardBody.changeLang(EN);
+        return;
+      }
+      if (target.value === CAPSLOCK) {
+        this.keyboardBody.onCaps();
+        return;
+      }
+      if (target.value === ENTER) {
+        this.keyboardTextarea.addLetter('\n');
+        return;
+      }
+      if (target.value === SPACE) {
+        this.keyboardTextarea.addLetter(' ');
+        return;
+      }
+      if (target.value === DONE) {
+        this.elem.classList.add('keyboard--hidden');
+        return;
+      }
+      this.keyboardTextarea.addLetter(target.textContent);
     }
+  }
+
+  onKeydown({ key, code }) {
+    if (key === CAPSLOCK) {
+      this.keyboardBody.onCaps();
+      this.keyboardBody.activeKey(key);
+      return;
+    }
+    if (code === SPACE) {
+      this.keyboardBody.activeKey(code);
+      return;
+    }
+    this.keyboardBody.activeKey(key);
+  }
+
+  onKeyUp({ key, code }) {
+    if (key === CAPSLOCK) {
+      this.keyboardBody.onCaps();
+      this.keyboardBody.disableKey(code);
+      return;
+    }
+    if (code === SPACE) {
+      this.keyboardBody.disableKey(code);
+      return;
+    }
+    this.keyboardBody.disableKey(key);
+  }
+
+  onFocus() {
+    this.elem.classList.remove('keyboard--hidden');
+  }
+
+  addEventListeners() {
+    this.elem.addEventListener('click', (e) => this.onClick(e));
+    this.elem.addEventListener('keydown', (e) => this.onKeydown(e));
+    this.elem.addEventListener('keyup', (e) => this.onKeyUp(e));
+    this.keyboardTextarea.elem.addEventListener('focus', (e) => this.onFocus(e));
   }
 }
 

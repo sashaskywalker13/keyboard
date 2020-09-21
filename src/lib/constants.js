@@ -1,0 +1,9 @@
+export const RU = 'RU';
+export const EN = 'EN';
+export const BACKSPACE = 'Backspace';
+export const SYMBOLS = 'Symbols';
+export const CAPSLOCK = 'CapsLock';
+export const ENTER = 'Enter';
+export const BACK = 'Back';
+export const DONE = 'Done';
+export const SPACE = 'Space';

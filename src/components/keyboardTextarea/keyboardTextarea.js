@@ -1,4 +1,4 @@
-import './textarea.scss';
+import './keyboardTextarea.scss';
 
 class Textarea {
   constructor() {
@@ -15,15 +15,15 @@ class Textarea {
     this.coursorPosition = e.target.selectionStart;
   }
 
-  deleteText() {
+  deleteLetter() {
     const textareaText = this.elem.value.split('');
     textareaText.splice(this.coursorPosition - 1, 1);
     this.elem.value = textareaText.join('');
     this.elem.setSelectionRange(this.coursorPosition - 1, this.coursorPosition - 1);
   }
 
-  addText(text) {
-    this.elem.setRangeText(text, this.coursorPosition, this.coursorPosition, 'end');
+  addLetter(letter) {
+    this.elem.setRangeText(letter, this.coursorPosition, this.coursorPosition, 'end');
   }
 }
 
