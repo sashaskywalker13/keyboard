@@ -24,7 +24,9 @@ class Textarea {
   }
 
   addLetter(letter) {
+    const textLength = this.elem.value.length + 1;
     this.elem.setRangeText(letter, this.coursorPosition, this.coursorPosition, 'end');
+    this.elem.setSelectionRange(textLength, textLength);
   }
 }
 
