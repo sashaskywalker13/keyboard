@@ -17,10 +17,12 @@ class Textarea {
   }
 
   deleteLetter() {
-    const textareaText = this.elem.value.split('');
-    textareaText.splice(this.coursorPosition - 1, 1);
-    this.elem.value = textareaText.join('');
-    this.elem.setSelectionRange(this.coursorPosition - 1, this.coursorPosition - 1);
+    if (this.coursorPosition) {
+      const textareaText = this.elem.value.split('');
+      textareaText.splice(this.coursorPosition - 1, 1);
+      this.elem.value = textareaText.join('');
+      this.elem.setSelectionRange(this.coursorPosition - 1, this.coursorPosition - 1);
+    }
   }
 
   addLetter(letter) {
