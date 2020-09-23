@@ -31,6 +31,7 @@ class Keyboard {
 
   onClick({ target }) {
     if (target.classList.contains('keyboard__key')) {
+      this.keyboardTextarea.elem.focus();
       if (target.value === RU) {
         this.keyboardBody.changeLang(RU);
         return;
@@ -65,6 +66,7 @@ class Keyboard {
       }
       if (target.value === DONE) {
         this.elem.classList.add('keyboard--hidden');
+        this.keyboardTextarea.elem.blur();
         return;
       }
       this.keyboardTextarea.addLetter(target.textContent);
